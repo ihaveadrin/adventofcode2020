@@ -29,41 +29,26 @@
 # 
 # How many bag colors can eventually contain at least one shiny gold bag? (The list of rules is quite long; make sure you get all of it.)
 
-import strutils, streams, tables, sequtils
+import strutils, tables, sequtils
 
 type
   SubColour = tuple[quantity: int, name: string, id: int]
   Colour = tuple[name: string, mayContainGold: int, bag_contained: seq[SubColour], bag_contained_ids: seq[int]]
 # mayContainGold is a flag: 0 "not processed", 1 "may contain a gold shiny bag", 2 "can't contain a gold shiny bag"
-# SubColour = tuple[quantity: int, id: int]
 
 var s = readFile("puzzle/puzzle7.txt").strip().splitLines()
 var lookup_colours = initTable[string, int]()
 var colours: seq[Colour]
-var part: seq[Colour]
 var colour: string
 var subcols: seq[string]
 var tmp: seq[string]
 var n = 0
 var subcolname: string
 var i = 0
-var j = 0
-var found = false
-var sum = 0
-var sub = 0
-var multiplied = 0
-var min = 0
-var max = 0
-var needle = ""
-var valid = 0
 var table_last = -1
 var pattern = "shiny gold"
-var id_pattern = 0
 var containers: seq[string]
 var containers_id: seq[int]
-var new_containers_id: seq[int]
-var rem: seq[int]
-var processed = 0
 var first_loop = true
 var gld = 0
 
